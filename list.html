@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Lists - Glassmorphism</title>
+    <!-- Tailwind CSS v4 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        .glass-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .glass-hover:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
+        }
+    </style>
+</head>
+<body class="p-8 font-sans">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <!-- Header -->
+        <div class="glass rounded-3xl p-8 text-center">
+            <h1 class="text-5xl font-bold text-white mb-2">Beautiful Lists</h1>
+            <p class="text-white/80 text-lg">Styled with Tailwind CSS v4 & Glassmorphism</p>
+        </div>
+
+        <!-- Unordered List Section -->
+        <div class="glass rounded-3xl p-8 glass-hover">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+                <span class="bg-white/20 rounded-full w-10 h-10 flex items-center justify-center mr-3">🍎</span>
+                Unordered List (ul)
+            </h2>
+            <div class="glass rounded-2xl p-6">
+                <ul class="space-y-3">
+                    <li class="text-white text-lg flex items-center p-3 rounded-xl hover:bg-white/10 transition-all duration-300">
+                        <span class="w-2 h-2 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full mr-4"></span>
+                        Mangga
+                    </li>
+                    <li class="text-white text-lg flex items-center p-3 rounded-xl hover:bg-white/10 transition-all duration-300">
+                        <span class="w-2 h-2 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full mr-4"></span>
+                        Pisang
+                    </li>
+                    <li class="text-white text-lg flex items-center p-3 rounded-xl hover:bg-white/10 transition-all duration-300">
+                        <span class="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mr-4"></span>
+                        Jambu
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="flex items-center justify-center">
+            <div class="h-px bg-white/30 flex-1"></div>
+            <span class="px-4 text-white/60">✨</span>
+            <div class="h-px bg-white/30 flex-1"></div>
+        </div>
+
+        <!-- Ordered List Section -->
+        <div class="glass rounded-3xl p-8 glass-hover">
+            <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+                <span class="bg-white/20 rounded-full w-10 h-10 flex items-center justify-center mr-3">📋</span>
+                Ordered List (ol)
+            </h2>
+            <div class="glass rounded-2xl p-6">
+                <ol class="space-y-3">
+                    <li class="text-white text-lg flex items-start p-4 rounded-xl hover:bg-white/10 transition-all duration-300">
+                        <span class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full flex items-center justify-center font-bold text-sm mr-4">1</span>
+                        <span class="pt-1">Buka Github.com</span>
+                    </li>
+                    <li class="text-white text-lg flex items-start p-4 rounded-xl hover:bg-white/10 transition-all duration-300">
+                        <span class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-full flex items-center justify-center font-bold text-sm mr-4">2</span>
+                        <span class="pt-1">Klik tombol plus di kanan atas</span>
+                    </li>
+                    <li class="text-white text-lg flex items-start p-4 rounded-xl hover:bg-white/10 transition-all duration-300">
+                        <span class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-indigo-400 to-blue-500 rounded-full flex items-center justify-center font-bold text-sm mr-4">3</span>
+                        <span class="pt-1">Pilih New Repository</span>
+                    </li>
+                    <li class="text-white text-lg flex items-start p-4 rounded-xl hover:bg-white/10 transition-all duration-300">
+                        <span class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center font-bold text-sm mr-4">4</span>
+                        <span class="pt-1">Isi nama repository</span>
+                    </li>
+                    <li class="text-white text-lg flex items-start p-4 rounded-xl hover:bg-white/10 transition-all duration-300">
+                        <span class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-full flex items-center justify-center font-bold text-sm mr-4">5</span>
+                        <span class="pt-1">Hidupkan Add Readme</span>
+                    </li>
+                    <li class="text-white text-lg flex items-start p-4 rounded-xl hover:bg-white/10 transition-all duration-300">
+                        <span class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-teal-400 to-green-500 rounded-full flex items-center justify-center font-bold text-sm mr-4">6</span>
+                        <span class="pt-1">Klik Create Repository</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="glass rounded-2xl p-6 text-center">
+            <p class="text-white/70 text-sm">Made with ❤️ using Tailwind CSS v4</p>
+        </div>
+    </div>
+</body>
+</html>
