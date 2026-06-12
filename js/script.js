@@ -3,7 +3,7 @@
 // ===========================
 let transactions = [];
 let chart = null;
-const HIGH_SPENDING_LIMIT = 100000; // Rp 100,000
+const HIGH_SPENDING_LIMIT = 100; // $100
 
 // ===========================
 // DOM Elements
@@ -23,12 +23,14 @@ const sortDefaultBtn = document.getElementById('sortDefault');
 // Initialize App
 // ===========================
 function initApp() {
+    console.log('Initializing app...');
     loadFromLocalStorage();
     renderTransactions();
     updateBalance();
     initChart();
     loadTheme();
     attachEventListeners();
+    console.log('Sort buttons:', sortHighestBtn, sortLowestBtn, sortDefaultBtn);
 }
 
 // ===========================
@@ -37,9 +39,34 @@ function initApp() {
 function attachEventListeners() {
     expenseForm.addEventListener('submit', handleFormSubmit);
     themeToggle.addEventListener('click', toggleTheme);
-    sortHighestBtn.addEventListener('click', () => sortTransactions('highest'));
-    sortLowestBtn.addEventListener('click', () => sortTransactions('lowest'));
-    sortDefaultBtn.addEventListener('click', () => sortTransactions('default'));
+    
+    // Check if sort buttons exist before attaching listeners
+    if (sortHighestBtn) {
+        sortHighestBtn.addEventListener('click', () => {
+            console.log('Sorting by highest');
+            sortTransactions('highest');
+        });
+    } else {
+        console.error('sortHighestBtn not found!');
+    }
+    
+    if (sortLowestBtn) {
+        sortLowestBtn.addEventListener('click', () => {
+            console.log('Sorting by lowest');
+            sortTransactions('lowest');
+        });
+    } else {
+        console.error('sortLowestBtn not found!');
+    }
+    
+    if (sortDefaultBtn) {
+        sortDefaultBtn.addEventListener('click', () => {
+            console.log('Sorting by default');
+            sortTransactions('default');
+        });
+    } else {
+        console.error('sortDefaultBtn not found!');
+    }
 }
 
 // ===========================
@@ -123,7 +150,7 @@ function renderTransactions() {
                 <div class="transaction-info">
                     <div class="transaction-name">${transaction.itemName}</div>
                     <div class="transaction-details">
-                        <span class="transaction-amount">Rp ${formatNumber(transaction.amount)}</span>
+                        <span class="transaction-amount">$${formatNumber(transaction.amount)}</span>
                         <span class="transaction-category category-${transaction.category}">${transaction.category}</span>
                     </div>
                 </div>
@@ -145,15 +172,26 @@ function updateBalance() {
 // Sorting Functions
 // ===========================
 function sortTransactions(sortType) {
+    console.log('Sorting transactions by:', sortType);
+    
+    if (transactions.length === 0) {
+        alert('⚠️ No transactions to sort!');
+        return;
+    }
+    
     if (sortType === 'highest') {
         transactions.sort((a, b) => b.amount - a.amount);
+        showNotification('📊 Sorted by Highest Amount');
     } else if (sortType === 'lowest') {
         transactions.sort((a, b) => a.amount - b.amount);
+        showNotification('📊 Sorted by Lowest Amount');
     } else if (sortType === 'default') {
         transactions.sort((a, b) => a.id - b.id);
+        showNotification('📊 Reset to Default Order');
     }
 
     renderTransactions();
+    console.log('Transactions after sorting:', transactions);
 }
 
 // ===========================
@@ -195,7 +233,7 @@ function initChart() {
                         label: function(context) {
                             const label = context.label || '';
                             const value = context.parsed || 0;
-                            return `${label}: Rp ${formatNumber(value)}`;
+                            return `${label}: $${formatNumber(value)}`;
                         }
                     }
                 }
@@ -278,7 +316,7 @@ function loadTheme() {
 // Utility Functions
 // ===========================
 function formatNumber(num) {
-    return num.toLocaleString('id-ID');
+    return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function showNotification(message) {
